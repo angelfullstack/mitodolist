@@ -1,1 +1,59 @@
 @import url(reset.css);
+body {
+    font-size: 16px;
+    font-family: Helvetica, sans-serif;
+}
+
+/* -----NEW TASK----- */
+
+.wrapper {}
+
+.newTask {}
+
+.newTask input[type="text"] {}
+
+.newTask select {}
+
+.newTask option {}
+
+.newTask input[type="submit"] {}
+
+.newTask .advice {}
+
+/* -----TASKS----- */
+
+.tasks {}
+
+.tasks .endedTasks {}
+
+.tasks .activeTasks {}
+
+.task {}
+
+.task h2 {}
+
+.task .deleteCont {}
+
+.task .deleteCont a {}
+
+/*-----FOOTER-----*/
+
+footer {}
+
+footer header {}
+
+footer header h1 {}
+
+footer header h1 span {}
+
+footer header .newBtnCont {}
+
+footer header .newBtnCont button{}
+
+footer .legal{
+
+}
+
+footer .legal a{
+    
+}

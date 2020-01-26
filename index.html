@@ -29,19 +29,19 @@
             -añadir 
             -filtrar resultados por orden/prioridad/Relevancia
      -->
-    <main>
+    <div class="wrapper">
         <section class="newTask">
             <form action="#" method="GET">
                 <input type="text" id="taskTitle" placeholder="Título de Tarea">
-                
-                    <select name="newPriority" id="newPriority">
-                        <option value="lowest">Muy baja</option>
-                        <option value="low">Baja</option>
-                        <option value="medium">Media</option>
-                        <option value="high">Alta</option>
-                        <option value="highest">Muy alta</option>
-                    </select>
-                
+
+                <select name="newPriority" id="newPriority">
+                    <option value="lowest">Muy baja</option>
+                    <option value="low">Baja</option>
+                    <option value="medium">Media</option>
+                    <option value="high">Alta</option>
+                    <option value="highest">Muy alta</option>
+                </select>
+
                 <select name="newPriority" id="newFrequency">
                     <option value="today">Hoy</option>
                     <option value="daily">Diaria</option>
@@ -50,7 +50,7 @@
                 </select>
                 <input type="submit" value="save" id="save">
             </form>
-            <p id="advice"></p>
+            <p id="advice" class=advice></p>
         </section>
         <header>
             <select name="filterPriority" id="filterPriority">
@@ -61,7 +61,7 @@
                 <option value="high">Alta</option>
                 <option value="highest">Muy alta</option>
             </select>
-            
+
             <select name="filterPriority" id="filterFrequency">
                 <option value="all">Todos</option>
                 <option value="today">Hoy</option>
@@ -69,19 +69,24 @@
                 <option value="weekly">Semanal</option>
                 <option value="monthly">Mensual</option>
             </select>
-            <main>
-                <section class="endedTasks"></section>
+            <main class="tasks">
+                <section class="endedTasks">
+
+                </section>
+                <section class="activeTasks">
                     <article id="1" class="high today">
-                        <h2>Titulo de la tarea 1 - Esta tarea es DUMMY</h2>
+                        <h3>Titulo de la tarea 1 - Esta tarea es DUMMY</h3>
                         <div class="deleteCont"><a href="#" title="delete">Eliminar</a></div>
                     </article>
-                <section class="tasks"></section>
+                </section>
             </main>
             <footer>
-                <header><h1>Mis <span>Tareas</span>Tareas</h1>
-                <p>&copy;</p></header>
+                <header>
+                    <h1>Mis <span>Tareas</span></h1>
+                    <p>&copy;</p>
+                </header>
                 <div class="newBtnCont">
-                
+                    <button>+</button>
                 </div>
                 <div class="legal">
                     <a href="#">Legal</a>
@@ -90,8 +95,8 @@
 
 
         </header>
-
-    </main>
+        <script src="js/main.js"></script>
+    </div>
 </body>
 
 </html>
