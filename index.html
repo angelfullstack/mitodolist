@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To do list</title>
     <meta name="author" content="Ángel Pasamontes">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <!-- 
@@ -26,6 +29,69 @@
             -añadir 
             -filtrar resultados por orden/prioridad/Relevancia
      -->
-    
+    <main>
+        <section class="newTask">
+            <form action="#" method="GET">
+                <input type="text" id="taskTitle" placeholder="Título de Tarea">
+                
+                    <select name="newPriority" id="newPriority">
+                        <option value="lowest">Muy baja</option>
+                        <option value="low">Baja</option>
+                        <option value="medium">Media</option>
+                        <option value="high">Alta</option>
+                        <option value="highest">Muy alta</option>
+                    </select>
+                
+                <select name="newPriority" id="newFrequency">
+                    <option value="today">Hoy</option>
+                    <option value="daily">Diaria</option>
+                    <option value="weekly">Semanal</option>
+                    <option value="monthly">Mensual</option>
+                </select>
+                <input type="submit" value="save" id="save">
+            </form>
+            <p id="advice"></p>
+        </section>
+        <header>
+            <select name="filterPriority" id="filterPriority">
+                <option value="all">Todos</option>
+                <option value="lowest">Muy baja</option>
+                <option value="low">Baja</option>
+                <option value="medium">Media</option>
+                <option value="high">Alta</option>
+                <option value="highest">Muy alta</option>
+            </select>
+            
+            <select name="filterPriority" id="filterFrequency">
+                <option value="all">Todos</option>
+                <option value="today">Hoy</option>
+                <option value="daily">Diaria</option>
+                <option value="weekly">Semanal</option>
+                <option value="monthly">Mensual</option>
+            </select>
+            <main>
+                <section class="endedTasks"></section>
+                    <article id="1" class="high today">
+                        <h2>Titulo de la tarea 1 - Esta tarea es DUMMY</h2>
+                        <div class="deleteCont"><a href="#" title="delete">Eliminar</a></div>
+                    </article>
+                <section class="tasks"></section>
+            </main>
+            <footer>
+                <header><h1>Mis <span>Tareas</span>Tareas</h1>
+                <p>&copy;</p></header>
+                <div class="newBtnCont">
+                
+                </div>
+                <div class="legal">
+                    <a href="#">Legal</a>
+                </div>
+            </footer>
+
+
+        </header>
+
+    </main>
 </body>
+
 </html>
