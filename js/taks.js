@@ -2,24 +2,28 @@ var listaTareas = new Array();
 
 listaTareas = [
 	{
-		'idTarea': 1,
-		'titulo': 'Estudiar Javascript',
-		'prioridad': 'urgente'
+		'idTask': 1,
+		'name': 'Estudiar Javascript',
+		'priority': 'low',
+		'frequency':'daily'
 	},
 	{
-		'idTarea': 2,
-		'titulo': 'Dormir',
-		'prioridad': 'diaria'
+		'idTask': 2,
+		'name': 'Dormir',
+		'priority': 'low',
+		'frequency': 'daily'
 	},
 	{
-		'idTarea': 3,
-		'titulo': 'Salir a comer',
-		'prioridad': 'mensual'
+		'idTask': 3,
+		'name': 'Salir a comer',
+		'priority': 'high',
+		'frequency': 'monthly'
 	},
 	{
-		'idTarea': 4,
-		'titulo': 'vamonos',
-		'prioridad': 'mensual'
+		'idTask': 4,
+		'name': 'vamonos',
+		'priority': 'medium',
+		'frequency': 'today'
 	}
 ];
 
