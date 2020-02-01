@@ -1,6 +1,6 @@
-var listaTareas = new Array();
+var taskList = new Array();
 
-listaTareas = [
+taskList = [
 	{
 		'idTask': 1,
 		'name': 'Estudiar Javascript',
@@ -11,7 +11,7 @@ listaTareas = [
 		'idTask': 2,
 		'name': 'Dormir',
 		'priority': 'low',
-		'frequency': 'daily'
+		'frequency': 'monthly'
 	},
 	{
 		'idTask': 3,
