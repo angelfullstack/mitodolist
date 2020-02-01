@@ -27,6 +27,10 @@ for (var i = 0; i < filter.length; i++) {
 searchBtn.addEventListener('click', captureSearch);
 searchInput.addEventListener('keyup', captureSearch);
 
+//listener de los botones ordernar
+orderPriorityBtn.addEventListener('click',captureOrder);
+orderFrequencyBtn.addEventListener('click',captureOrder);
+
 //Función que se ejecuta ante el evento submit del botón de formulario
 function getForm(evt) {
     evt.preventDefault();
@@ -81,3 +85,36 @@ function captureSearch(evt) {
         paintTasks(search(taskList, searchString));
     }
 }
+
+
+//función que recoge el evento de los botones ordenar
+function captureOrder(evt){
+    evt.preventDefault();
+    console.log(evt.target.id)
+    console.log(evt.target);
+    var criteriaList= new Array();
+    var criteria;
+    var order;
+    if(evt.target.id=='orderPriorityBtn'){
+        criteriaList=priorityCriteria;
+        criteria = 'priority';
+        order=priorityUp;
+        priorityUp=!priorityUp;
+    }else{
+        criteriaList=frequencyCriteria;
+        criteria = 'frequency';
+        order=frequencyUp;
+        frequencyUp = !frequencyUp;
+        
+
+    }
+    console.log(criteriaList);
+    /* //Si se cambia la lista principal con este método:
+            orderList(taskList, criteriaList, criteria,order);
+            paintTasks(taskList);
+
+    se crean 4 órdenes distintos por botón cada vez que se toca, ya que se reordena internamente cada conjunto de prioridades o frecuencias*/
+    paintTasks(orderList(taskList, criteriaList, criteria, order));
+    listenDeletes();
+}
+

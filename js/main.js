@@ -16,7 +16,21 @@ var filterPriority = document.getElementById('filterPriority');
 var filterFrequency = document.getElementById('filterFrequency');
 var searchInput = document.getElementById('search');
 var searchBtn = document.getElementById('searchBtn');
+var orderPriorityBtn = document.getElementById('orderPriorityBtn');
+var orderFrequencyBtn = document.getElementById('orderFrequencyBtn');
+var priorityUp=true;
+var frequencyUp=true;
+
 var idCounter = 5;
+
+/*  <option value="all" selected>Todos</option>
+                <option value="today">Hoy</option>
+                <option value="daily">Diaria</option>
+                <option value="weekly">Semanal</option>
+                <option value="monthly">Mensual</option> */
+
+var priorityCriteria=new Array('highest','high','medium','low','lowest');
+var frequencyCriteria = new Array('today','daily','weekly','monthly');
 
 
 //Función que crea la tarea en base a los datos de formulario pasados por el event
@@ -27,7 +41,6 @@ function createTask(pTaskTitle, pPriority, pFrequency) {
         name: pTaskTitle,
         priority: pPriority,
         frequency: pFrequency
-
     }
     idCounter++;
     console.log(task);
@@ -55,7 +68,7 @@ function paintTask(pTask) {
     aDelete.title = 'delete';
     aDelete.href = '#';
 
-    var h3Text = document.createTextNode(pTask.name);
+    var h3Text = document.createTextNode(pTask.name+':'+pTask.priority+':'+pTask.frequency);
     var aDeleteText = document.createTextNode('\u00D7');
 
     h3.appendChild(h3Text);
@@ -117,5 +130,44 @@ function search(pTaskList, pString) {
     })
     console.log(filteredTasks)
     return filteredTasks;
+
+
+
+    function orderList(pTaskList,pCriteriaList,pCriteria,pOrder){
+ var orderedList=new Array();
+ for(criteria of pCriteriaList){
+     for(task of pTaskList){
+         if(task[pCriteria]==criteria){
+             orderedList.push(task);
+         }
+     }
+ }
+ 
+ pTaskList=orderedList;
+    if (pOrder == false) {
+        pTaskList.reverse();
+    }
+return pTaskList;
+
+}
+}
+
+
+//Función ordenar lista
+function orderList(pTaskList, pCriteriaList, pCriteria, pOrder) {
+    var orderedList = new Array();
+    for (criteria of pCriteriaList) {
+        for (task of pTaskList) {
+            if (task[pCriteria] == criteria) {
+                orderedList.push(task);
+            }
+        }
+    }
+
+    pTaskList = orderedList;
+    if (pOrder == false) {
+        pTaskList.reverse();
+    }
+    return pTaskList;
 
 }
