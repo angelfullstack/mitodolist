@@ -1,5 +1,8 @@
 /*  
 Filtrar por prioridad y frecuencia. Son filtros conjuntos y crean una lista intermedia a la que acceden.
+búsqueda
+
+ordenar por prioridad o frecuencia
 
 Búsqueda por palabras.
 */
@@ -9,8 +12,10 @@ var newTaskForm = document.querySelector('#newTaskForm');
 var activeTasks = document.querySelector('#activeTasks');
 var deleteBtns; //No se asigna, ya que hasta que no se pintan los botones no existe ninguno
 var filter = document.querySelectorAll('.filter');
-var filterPriority = document.getElementById('filterPriority')
+var filterPriority = document.getElementById('filterPriority');
 var filterFrequency = document.getElementById('filterFrequency');
+var searchInput = document.getElementById('search');
+var searchBtn = document.getElementById('searchBtn');
 var idCounter = 5;
 
 //listnerer del formulario crear tarea
@@ -21,6 +26,8 @@ newTaskForm.addEventListener('submit', getForm);
 for (var i = 0; i < filter.length; i++) {
     filter[i].addEventListener('change', filterTasks)
 }
+
+//listener del botón searchBtn
 
 //Se pintan las tareas por defecto al iniciar la aplicación
 paintTasks(taskList);
@@ -143,8 +150,8 @@ function priorityFilter(pTaskList, pValue) {
                 filteredList.push(task)
             }
         }
-    }else{
-        filteredList=taskList;
+    } else {
+        filteredList = taskList;
     }
     return filteredList;
 }
@@ -164,4 +171,27 @@ function frequencyFilter(pTaskList, pValue) {
         filteredList = taskList;
     }
     return filteredList;
+}
+
+//Pongo los dos métodos, ya que se incluyen en la propuesta del ejercicio, pero es más práctico el keypress del input:text ya que en principio la lista de tareas no sería muy larga.
+searchBtn.addEventListener('click', captureSearch);
+searchInput.addEventListener('keyup', captureSearch);
+
+function captureSearch(evt) {
+    console.log(evt.target)
+    var searchString = searchInput.value;
+    if (searchString != '' || searchString[0] != ' ') {
+        paintTasks(search(taskList, searchString));
+    }
+}
+
+function search(pTaskList, pString) {
+    console.log(pString)
+    var filteredTasks = pTaskList.filter(task => {
+        var taskName = task.name.toLowerCase()
+        return taskName.includes(pString.toLowerCase());
+    })
+    console.log(filteredTasks)
+    return filteredTasks;
+
 }
