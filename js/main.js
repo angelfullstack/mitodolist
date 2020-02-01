@@ -1,22 +1,18 @@
 var newTaskForm = document.querySelector('#newTaskForm');
 var activeTasks = document.querySelector('#activeTasks');
 var deleteBtns; //No se asigna, ya que hasta que no se pintan los botones no existe ninguno
-var idCounter = 4;
+var idCounter = 5;
 
 //Evento del formulario crear tarea
 newTaskForm.addEventListener('submit', getForm);
 
-//Eventos de los botones borrar tarea
-function listenDeletes() {
-    for (deleteBtn of deleteBtns) {
-        console.log(deleteBtn)
-        deleteBtn.addEventListener('click', deleteTask);
-    }
-}
+
 paintTasks(listaTareas);
 
-listenDeletes();
 
+
+
+//Función que se ejecuta ante el evento submit del botón de formulario
 function getForm(evt) {
     evt.preventDefault();
     console.log(evt.target);
@@ -38,6 +34,7 @@ function getForm(evt) {
 
 }
 
+//Función que crea la tarea en base a los datos de formulario pasados por el event
 function createTask(pTaskTitle, pPriority, pFrequency) {
     var task = new Object();
     task = {
@@ -54,24 +51,15 @@ function createTask(pTaskTitle, pPriority, pFrequency) {
     paintTask(task);
 }
 
+// la función que pinta varios tasks usando la función pintar task individuales de forma recursiva. 
 function paintTasks(pTasksList) {
     for (task of pTasksList) {
         paintTask(task);
-        
     }
-    deleteBtns = document.querySelectorAll('.delete');
-    listenDeletes();
 }
 
-/* 
-<section id="activeTasks" class="activeTasks">
-    <article id="1" class="high today">
-        <h3>Titulo de la tarea 1 - Esta tarea es DUMMY</h3>
-        <div class="deleteCont"><a href="#" title="delete">Eliminar</a></div>
-    </article>
-</section>
- */
 
+//Función que pinta una sóla tarea
 function paintTask(pTask) {
     var article = document.createElement('article');
     var h3 = document.createElement('h3');
@@ -82,7 +70,6 @@ function paintTask(pTask) {
     aDelete.title = 'delete';
     aDelete.href = '#';
 
-
     var h3Text = document.createTextNode(pTask.name);
     var aDeleteText = document.createTextNode('\u00D7');
 
@@ -91,14 +78,35 @@ function paintTask(pTask) {
     divDelete.appendChild(aDelete);
     article.appendChild(h3);
     article.appendChild(divDelete);
+    article.id=pTask.idTask;
     activeTasks.appendChild(article);
+    aDelete.addEventListener('click', deleteTask);
 
 
 }
 
-function deleteTask(evt) {
-    console.log(evt.target.parentNode.parentNode);
 
+
+function deleteTask(evt) {
+    /* console.log(evt.target.parentNode.parentNode.id); */
+    evt.preventDefault();
+    var taskToDelete= evt.target.parentNode.parentNode
+    var taskToDeleteId=evt.target.parentNode.parentNode.id;
+    // es curioso pero se puede eliminar la tarea tanto con taskToDelete, como taskToDeleteId y ahora mismo no entiendo porqué con el primero sí, ya que en principio taskToDelete se refiere a un objeto en el DOM y no a un objeto de un array.
+    listaTareas.splice(listaTareas.indexOf(taskToDeleteId),1);
+    activeTasks.removeChild(taskToDelete)
+
+}
+
+//Función para comprobar por consola si los eventlistener han sido removidos. Sólo para usar por consola y comprobar que el sistema de la función deleteTask delete-removechild-removeEventlistener está funcionanado
+function listenDeletes() {
+   
+    var deleteBtns = document.querySelectorAll('.delete')
+    for (deleteBtn of deleteBtns) {
+         console.log(deleteBtn);
+        
+        
+    }
 }
 
 function filterTasks() {
