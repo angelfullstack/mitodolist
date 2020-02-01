@@ -18,7 +18,7 @@ var searchInput = document.getElementById('search');
 var searchBtn = document.getElementById('searchBtn');
 var idCounter = 5;
 
-//listnerer del formulario crear tarea
+//listenerer del formulario crear tarea
 newTaskForm.addEventListener('submit', getForm);
 
 //listeners de los filtros combinados
@@ -28,6 +28,9 @@ for (var i = 0; i < filter.length; i++) {
 }
 
 //listener del botón searchBtn
+//Pongo los dos métodos, ya que se incluyen en la propuesta del ejercicio, pero es más práctico el keypress del input:text ya que en principio la lista de tareas no sería muy larga.
+searchBtn.addEventListener('click', captureSearch);
+searchInput.addEventListener('keyup', captureSearch);
 
 //Se pintan las tareas por defecto al iniciar la aplicación
 paintTasks(taskList);
@@ -69,8 +72,8 @@ function createTask(pTaskTitle, pPriority, pFrequency) {
     }
     idCounter++;
     console.log(task);
-    listaTareas.push(task);
-    console.log(listaTareas);
+    taskList.push(task);
+    console.log(taskList);
     paintTask(task);
 }
 
@@ -119,7 +122,7 @@ function deleteTask(evt) {
     // es curioso pero se puede eliminar la tarea tanto con taskToDelete, como taskToDeleteId y ahora mismo no entiendo porqué con el primero sí, ya que en principio taskToDelete se refiere a un objeto en el DOM y no a un objeto de un array
 
     //En este punto se podría crear una lista de tasks borrados (o finalizados)
-    listaTareas.splice(listaTareas.indexOf(taskToDeleteId), 1);
+    taskList.splice(taskList.indexOf(taskToDeleteId), 1);
     activeTasks.removeChild(taskToDelete)
 
 }
@@ -173,9 +176,7 @@ function frequencyFilter(pTaskList, pValue) {
     return filteredList;
 }
 
-//Pongo los dos métodos, ya que se incluyen en la propuesta del ejercicio, pero es más práctico el keypress del input:text ya que en principio la lista de tareas no sería muy larga.
-searchBtn.addEventListener('click', captureSearch);
-searchInput.addEventListener('keyup', captureSearch);
+
 
 function captureSearch(evt) {
     console.log(evt.target)
