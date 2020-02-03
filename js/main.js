@@ -101,7 +101,7 @@ function paintTask(pTask) {
             break;
         case 'weekly':
             divProgressBar.style.width = ('50%');
-            divProgressBar.innerText = 'SEMANL';
+            divProgressBar.innerText = 'SEMANAL';
             break;
         case 'monthly':
             divProgressBar.style.width = ('90%');

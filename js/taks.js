@@ -3,19 +3,19 @@ var taskList = new Array();
 taskList = [
 	{
 		'idTask': 1,
-		'name': '1Estudiar Javascript',
+		'name': 'Estudiar Javascript',
 		'priority': 'lowest',
 		'frequency':'daily'
 	},
 	{
 		'idTask': 2,
-		'name': '2Dormir',
+		'name': 'Dormir',
 		'priority': 'low',
 		'frequency': 'daily'
 	},
 	{
 		'idTask': 3,
-		'name': '3Salir a comer',
+		'name': 'Salir a comer',
 		'priority': 'medium',
 		'frequency': 'monthly'
 	},
