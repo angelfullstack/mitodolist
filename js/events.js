@@ -38,13 +38,9 @@ newTaskBtn.addEventListener('click', showNewTask);
 //Función que se ejecuta ante el evento submit del botón de formulario
 function getForm(evt) {
     evt.preventDefault();
-    console.log(evt.target);
     var taskTitle = document.getElementById('newTaskTitle').value;
-    console.log(taskTitle);
     var priority = document.getElementById('newPriority').value;
-    console.log(priority);
     var frequency = document.getElementById('newFrequency').value;
-    console.log(frequency);
     if (taskTitle == '' || taskTitle[0] == ' ') {
         document.getElementById('newTaskForm').reset();
         document.getElementById('advice').innerText = 'La tarea debe tener al menos un nombre';
@@ -62,34 +58,31 @@ function getForm(evt) {
 
 //Función borrar una tarea; recoge el evento del botón y apunta a al artículo del que desciende para borrar este nodo, y a través de la id del mismo artículo borrarlo de la lista de tasks;
 function deleteTask(evt) {
-    /* console.log(evt.target.parentNode.parentNode.id); */
     evt.preventDefault();
     var taskToDelete = evt.target.parentNode.parentNode
     var taskToDeleteId = evt.target.parentNode.parentNode.id;
-    // es curioso pero se puede eliminar la tarea tanto con taskToDelete, como taskToDeleteId y ahora mismo no entiendo porqué con el primero sí, ya que en principio taskToDelete se refiere a un objeto en el DOM y no a un objeto de un array
-
     activeTasks.removeChild(taskToDelete)
     deleteTaskOfArray(taskList, taskToDeleteId);
 }
 
 //Función que recoge evento y datos de filtro
 function filterTasks(evt) { 
-    console.log(evt.target.value);
     var priorityValue = filterPriority.value;
     var frequencyValue = filterFrequency.value;
     console.log(filterPriority.value + ':' + filterFrequency.value);
-    /* Algo pasa aquí y no consigo que los dos filtros funcionen a la vez. Antes de este commit funcionaba todo y ahora sólo filtra el primer callback independientemente de cual sea. En este caso sólo filtra prioridad */
+ 
     paintTasks(priorityFilter(frequencyFilter(taskList, frequencyValue), priorityValue));
+    
 }
 
 
 
-//
+//Función que recoge evento de tecleo en search y botón search
 function captureSearch(evt) {
-    console.log(evt.target)
     var searchString = searchInput.value;
     if (searchString != '' || searchString[0] != ' ') {
         paintTasks(search(taskList, searchString));
+        listenDeletes();
     }
 }
 
@@ -97,8 +90,6 @@ function captureSearch(evt) {
 //función que recoge el evento de los botones ordenar
 function captureOrder(evt) {
     evt.preventDefault();
-    console.log(evt.target.id)
-    console.log(evt.target);
     var criteriaList = new Array();
     var criteria;
     var order;
@@ -115,7 +106,6 @@ function captureOrder(evt) {
 
 
     }
-    console.log(criteriaList);
     /* //Si se cambia la lista principal con este método:
             orderList(taskList, criteriaList, criteria,order);
             paintTasks(taskList);

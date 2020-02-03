@@ -1,16 +1,7 @@
-/*  
-Filtrar por prioridad y frecuencia. Son filtros conjuntos y crean una lista intermedia a la que acceden.
-búsqueda
-
-ordenar por prioridad o frecuencia
-
-Búsqueda por palabras.
-*/
-
 var newTask= document.getElementById('newTask');
 var newTaskForm = document.querySelector('#newTaskForm');
 var activeTasks = document.querySelector('#activeTasks');
-var deleteBtns; //No se asigna, ya que hasta que no se pintan los botones no existe ninguno
+var deleteBtns; 
 var filter = document.querySelectorAll('.filter');
 var filterPriority = document.getElementById('filterPriority');
 var filterFrequency = document.getElementById('filterFrequency');
@@ -22,15 +13,7 @@ var newTaskBtn= document.getElementById('newTaskBtn');
 var newTaskState=false;
 var priorityUp = true;
 var frequencyUp = true;
-
 var idCounter = 5;
-
-/*  <option value="all" selected>Todos</option>
-                <option value="today">Hoy</option>
-                <option value="daily">Diaria</option>
-                <option value="weekly">Semanal</option>
-                <option value="monthly">Mensual</option> */
-
 var priorityCriteria = new Array('highest', 'high', 'medium', 'low', 'lowest');
 var frequencyCriteria = new Array('today', 'daily', 'weekly', 'monthly');
 
@@ -45,13 +28,11 @@ function createTask(pTaskTitle, pPriority, pFrequency) {
         frequency: pFrequency
     }
     idCounter++;
-    console.log(task);
     taskList.push(task);
-    console.log(taskList);
     paintTask(task);
 }
 
-// la función que pinta varios tasks usando la función pintar task individuales de forma recursiva. 
+//Función que pinta varios tasks usando la función pintar task individuales de forma recursiva. 
 function paintTasks(pTasksList) {
     activeTasks.innerHTML = '';
     for (task of pTasksList) {
@@ -137,7 +118,7 @@ function deleteTaskOfArray(pList, pIdTask) {
     taskList.splice(pList.indexOf(pIdTask), 1);
 }
 
-/*Funciones filtro*/
+//Funciones filtro
 function priorityFilter(pTaskList, pValue) {
     var filteredList = new Array();
     if (pValue != 'all') {
@@ -147,7 +128,7 @@ function priorityFilter(pTaskList, pValue) {
             }
         }
     } else {
-        filteredList = taskList;
+        filteredList = pTaskList;
     }
     console.log(filteredList);
     return filteredList;
@@ -160,35 +141,23 @@ function frequencyFilter(pTaskList, pValue) {
         for (task of pTaskList) {
             if (task.frequency == pValue) {
                 filteredList.push(task);
-                console.log('ok')
             }
         }
     } else {
-        filteredList = taskList;
+        filteredList = pTaskList;
         
     }
     console.log(filteredList);
     return filteredList;
 }
 
-
-
-
-
-
 //Función de búsqueda en una lista
 function search(pTaskList, pString) {
-    console.log(pString)
     var filteredTasks = pTaskList.filter(task => {
         var taskName = task.name.toLowerCase()
         return taskName.includes(pString.toLowerCase());
     })
-    console.log(filteredTasks)
     return filteredTasks;
-
-
-
-
 }
 
 

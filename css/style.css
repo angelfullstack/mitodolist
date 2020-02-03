@@ -1,20 +1,3 @@
-/* 
-Si da tiempo
-/más animaciones
-/Lista Eliminados(eliminar eliminados también, of course)
-reparar doble filtro;
--Estilizar footer
--estilizar select option. after sobre select
--añadir titles a los filtros
--añadir labels a los inputs
--limpiar código de console.log
--color
-
-
-
-
-*/
-
 @import url('reset.css');
 @import url('https://fonts.googleapis.com/css?family=Pacifico|Raleway:400,700&display=swap');
 :root {
@@ -64,6 +47,18 @@ body {
     position: relative;
 }
 
+/*--SELECT/OPTION APPERANCE--*/
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('../images/arrow1.svg');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+}
+
 /* -----NEW TASK----- */
 
 .newTask {
@@ -71,6 +66,7 @@ body {
     overflow: hidden;
     transition: height .5s;
     background: var(--color5);
+    border-radius: 1rem;
 }
 
 .newTask h2 {
@@ -80,8 +76,6 @@ body {
     color: var(--color3);
     padding-top: 1em;
 }
-
-.newTask.active {}
 
 .newTask form {
     display: flex;
@@ -93,7 +87,6 @@ body {
 
 .newTask input[type="text"] {
     display: block;
-    width: 100%;
     width: 80%;
     font-family: 'Raleway', Helvetica, sans-serif;
     font-size: 1.125rem;
@@ -102,14 +95,22 @@ body {
 
 .newTask select {
     display: block;
-    width: 50%;
+    width: 40%;
     font-family: 'Raleway', Helvetica, sans-serif;
     font-size: 1.125rem;
-    background: var(--color3);
     color: var(--color5);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color3) url('../images/arrow1.svg') no-repeat 95% .5em;
+    background-size: 10%;
 }
 
-.newTask option {}
+.newTask select::after {
+    content: 'fsdfdsfdsf';
+    display: block;
+    background: red;
+}
 
 .newTask input[type="submit"] {
     display: block;
@@ -143,16 +144,23 @@ body {
 .filters .filter {
     font-family: 'Raleway', Helvetica, sans-serif;
     font-size: 1.125rem;
-    background: var(--color5);
     color: var(--color3);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color5) url('../images/arrow2.svg') no-repeat 95% .5em;
+    background-size: 10%;
 }
 
-.filters .filter option {}
-
 .filters .orderBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 1.125rem;
     color: var(--color5);
+    line-height: 0;
+    ;
 }
 
 .filters .search {
@@ -167,6 +175,9 @@ body {
     text-decoration: none;
     font-size: 1.125rem;
     color: var(--color5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* -----TASKS----- */
@@ -252,8 +263,14 @@ body {
     right: 0;
     top: 0;
     height: 100%;
-    width: 40px;
+    width: 2.5rem;
     background: var(--color2);
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+    transition: width .25s
+}
+
+.task .deleteCont:hover {
+    width: 3rem;
 }
 
 .task .deleteCont a {
@@ -293,8 +310,6 @@ footer header h1 {
     font-family: 'Pacifico', cursive;
 }
 
-footer header h1 span {}
-
 footer .newTaskBtnCont {
     display: block;
     position: relative;
@@ -325,6 +340,7 @@ footer .newTaskBtn {
     outline: none;
 }
 
-footer .legal {}
-
-footer .legal a {}
+footer .legal a {
+    text-decoration: none;
+    color: var(--color5);
+}
