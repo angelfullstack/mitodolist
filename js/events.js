@@ -28,8 +28,12 @@ searchBtn.addEventListener('click', captureSearch);
 searchInput.addEventListener('keyup', captureSearch);
 
 //listener de los botones ordernar
-orderPriorityBtn.addEventListener('click',captureOrder);
-orderFrequencyBtn.addEventListener('click',captureOrder);
+orderPriorityBtn.addEventListener('click', captureOrder);
+orderFrequencyBtn.addEventListener('click', captureOrder);
+
+//listener del botón newTaskBtn, que desplegará el formulario newTask
+
+newTaskBtn.addEventListener('click', showNewTask);
 
 //Función que se ejecuta ante el evento submit del botón de formulario
 function getForm(evt) {
@@ -50,6 +54,8 @@ function getForm(evt) {
         document.getElementById('newTaskForm').reset();
         document.getElementById('advice').innerText = '';
         listenDeletes();
+        //Esto hace que cuando se añada una nueva tarea se haga scroll automáticamente de manera que se vea la última tarea grabada aunque la lista sea muy larga;
+        activeTasks.scrollTop = activeTasks.scrollHeight;
     }
 
 }
@@ -63,16 +69,17 @@ function deleteTask(evt) {
     // es curioso pero se puede eliminar la tarea tanto con taskToDelete, como taskToDeleteId y ahora mismo no entiendo porqué con el primero sí, ya que en principio taskToDelete se refiere a un objeto en el DOM y no a un objeto de un array
 
     activeTasks.removeChild(taskToDelete)
-    deleteTaskOfArray(taskList,taskToDeleteId);
+    deleteTaskOfArray(taskList, taskToDeleteId);
 }
 
 //Función que recoge evento y datos de filtro
-function filterTasks(evt) {
+function filterTasks(evt) { 
     console.log(evt.target.value);
-    var priorityValue = filterPriority.value
-    var frequencyValue = filterFrequency.value
-
-    paintTasks(priorityFilter(frequencyFilter(taskList, frequencyValue), priorityValue))
+    var priorityValue = filterPriority.value;
+    var frequencyValue = filterFrequency.value;
+    console.log(filterPriority.value + ':' + filterFrequency.value);
+    /* Algo pasa aquí y no consigo que los dos filtros funcionen a la vez. Antes de este commit funcionaba todo y ahora sólo filtra el primer callback independientemente de cual sea. En este caso sólo filtra prioridad */
+    paintTasks(priorityFilter(frequencyFilter(taskList, frequencyValue), priorityValue));
 }
 
 
@@ -88,24 +95,24 @@ function captureSearch(evt) {
 
 
 //función que recoge el evento de los botones ordenar
-function captureOrder(evt){
+function captureOrder(evt) {
     evt.preventDefault();
     console.log(evt.target.id)
     console.log(evt.target);
-    var criteriaList= new Array();
+    var criteriaList = new Array();
     var criteria;
     var order;
-    if(evt.target.id=='orderPriorityBtn'){
-        criteriaList=priorityCriteria;
+    if (evt.target.parentNode.id == 'orderPriorityBtn') {
+        criteriaList = priorityCriteria;
         criteria = 'priority';
-        order=priorityUp;
-        priorityUp=!priorityUp;
-    }else{
-        criteriaList=frequencyCriteria;
+        order = priorityUp;
+        priorityUp = !priorityUp;
+    } else {
+        criteriaList = frequencyCriteria;
         criteria = 'frequency';
-        order=frequencyUp;
+        order = frequencyUp;
         frequencyUp = !frequencyUp;
-        
+
 
     }
     console.log(criteriaList);
@@ -118,3 +125,21 @@ function captureOrder(evt){
     listenDeletes();
 }
 
+
+//Esta función despliega y repliega el formulario de eventos recalculando los espacios de los contenedores implicados.
+
+function showNewTask(evt) {
+    evt.preventDefault();
+    if (newTaskState == false) {
+        newTask.style.height = '12rem';
+        activeTasks.style.height = '20.5rem';
+        evt.target.parentNode.style.transform='rotate(45deg)';
+        newTaskState = !newTaskState;
+    } else {
+        newTask.style.height = '';
+        activeTasks.style.height = '';
+        evt.target.parentNode.style.transform = 'rotate(360deg)';
+        newTaskState = !newTaskState;
+    }
+
+}

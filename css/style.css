@@ -1,58 +1,324 @@
-@import url(reset.css);
+/* 
+Maquetación básica:
+/Cajas
+/Fuente
+/Iconos
+/prioridad
+/Delete Slide
+/botón crear
+/Scroll
+/active Task
+/animaciones
+
+Si da tiempo
+/más animaciones
+/Lista Eliminados(eliminar eliminados también, of course)
+
+
+
+*/
+
+@import url('reset.css');
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Raleway:400,700&display=swap');
+:root {
+    --color1: #97ebdb;
+    --color2: #ee6633;
+    --color3: #daf8e3;
+    --color4: #1f1f1f;
+    --color5: #005582;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+}
+
 body {
+    margin: 0;
     font-size: 16px;
-    font-family: Helvetica, sans-serif;}
+    font-family: 'Raleway', Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background:var(--color4);
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 28.75rem;
+    height: 47rem;
+    border: 2em solid var(--color1);
+    border-radius: 1em;
+}
+
+.container {
+    position: relative;
+}
 
 /* -----NEW TASK----- */
 
-.wrapper {}
+.newTask {
+    height: 0rem;
+    overflow: hidden;
+    transition: height .5s;
+    background: var(--color5);
+}
 
-.newTask {}
+.newTask h2{
+    text-align:center;
+    font-size:1.125rem;
+    font-weight: bold;
+    color:var(--color3);
+    padding-top:1em;
+}
 
-.newTask input[type="text"] {}
+.newTask.active {}
 
-.newTask select {}
+.newTask form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-evenly;
+    height: 10em;
+}
+
+.newTask input[type="text"] {
+    display: block;
+    width: 100%;
+    width: 80%;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-size: 1.125rem;
+    border: none;
+}
+
+.newTask select {
+    display: block;
+    width: 50%;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-size: 1.125rem;
+    background: var(--color3);
+    color: var(--color5);
+}
 
 .newTask option {}
 
-.newTask input[type="submit"] {}
+.newTask input[type="submit"] {
+    display: block;
+    background:var(--color2);
+    border:2px solid var(--color2);
+    color:var(--color3);
+    font-weight: bold;
+    padding:.5em;
+    border-radius:.25em;
 
-.newTask .advice {}
+}
+
+.newTask .advice {
+    text-align: center;
+}
+
+/* -----FILTROS----- */
+
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    flex-wrap: wrap;
+    height: 6em;
+    background: var(--color1);
+}
+
+.filters>* {
+    width: 25%;
+}
+
+.filters .filter {
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-size: 1.125rem;
+    background: var(--color5);
+    color: var(--color3);
+}
+
+.filters .filter option {}
+
+.filters .orderBtn {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--color5);
+}
+
+.filters .search {
+    width: 80%;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-size: 1.125rem;
+}
+
+.filters .searchBtn {
+    width: 10%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.125rem;
+    color: var(--color5);
+}
 
 /* -----TASKS----- */
 
+.tasks::-webkit-scrollbar {
+    display: none;
+}
+
+.tasks::-moz-scrollbar {
+    display: none;
+}
+
 .tasks {}
 
-.tasks .endedTasks {}
+.tasks .endedTasks {
+    height: 0;
+    overflow: hidden;
+}
 
-.tasks .activeTasks {}
+.tasks .activeTasks {
+    height: 32.5rem;
+    overflow-y: scroll;
+    background: var(--  color3);
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    transition: height .5s;
+}
 
-.task {}
+.task {
+    position: relative;
+    padding: 1em;
+}
 
-.task h2 {}
+.task.marine {
+    background: #daf8e3;
+}
 
-.task .deleteCont {}
+.task.blue {
+    background: #97ebdb;
+}
 
-.task .deleteCont a {}
+.task.green {
+    background: #00c2c7;
+}
+
+.task.lime {
+    background: #0086ad;
+}
+
+.task.yellow {
+    background: #005582;
+}
+
+.task h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.task .progress {
+    width: 90%;
+    height: .5em;
+    margin-top: .25em;
+    background: var(--color4);
+    border-radius: .25em;
+    overflow: hidden;
+}
+
+.task .progressBar {
+    height: .5em;
+    background: var(--color2);
+}
+
+.task .deleteCont {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    background: var(--color2);
+}
+
+.task .deleteCont a {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    color: var(--color1);
+    font-weight: bolder;
+    font-size: 3rem;
+}
 
 /*-----FOOTER-----*/
 
-footer {}
+footer {
+    bottom: 0;
+    display: flex;
+    padding: 1rem;
+    background:var(--color1);
+}
 
-footer header {}
+footer>* {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-footer header h1 {}
+footer header {
+    font-size: 2rem;
+    text-align: right;
+}
+
+footer header h1 {
+    font-family: 'Pacifico', cursive;
+}
 
 footer header h1 span {}
 
-footer header .newBtnCont {}
-
-footer header .newBtnCont button{}
-
-footer .legal{
-
+footer .newTaskBtnCont {
+    display: block;
+    position: relative;
+    width: 3em;
+    height: 3em;
+    background: var(--color5);
+    border-radius: 50%;
+    transform: rotate(0deg);
+    transition: .25s;
+    outline: none;
 }
 
-footer .legal a{
-    
+footer .newTaskBtnCont:hover {
+    width: 3.5em;
+    height: 3.5em;
 }
+
+footer .newTaskBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotate(0deg) translate(-50%, -50%);
+    text-decoration: none;
+    color: var(--color3);
+    font-size: 3rem;
+    font-weight: bold;
+    padding: .5em;
+    outline:none;
+}
+
+footer .legal {}
+
+footer .legal a {}

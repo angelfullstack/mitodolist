@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To do list</title>
-    <meta name="author" content="Ángel Pasamontes">
+    <meta name="author" content="Ángel Pasamontes @entropismo">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,29 +30,10 @@
             -filtrar resultados por orden/prioridad/Relevancia
      -->
     <div class="wrapper">
-        <section class="newTask">
-            <form action="#" method="GET" id="newTaskForm">
-                <input type="text" id="newTaskTitle" placeholder="Título de Tarea">
 
-                <select name="newPriority" id="newPriority">
-                    <option value="highest">Muy alta</option>
-                    <option value="high">Alta</option>
-                    <option value="medium" selected>Media</option>
-                    <option value="low">Baja</option>
-                    <option value="lowest">Muy baja</option>
-                </select>
 
-                <select name="newFrequency" id="newFrequency">
-                    <option value="today" selected>Hoy</option>
-                    <option value="daily">Diaria</option>
-                    <option value="weekly">Semanal</option>
-                    <option value="monthly">Mensual</option>
-                </select>
-                <input type="submit" value="save" id="save">
-            </form>
-            <p id="advice" class=advice></p>
-        </section>
-        <header>
+
+        <section class="filters">
             <select class="filter" name="filterPriority" id="filterPriority">
                 <option value="all" selected>Todos</option>
                 <option value="lowest">Muy baja</option>
@@ -61,7 +42,7 @@
                 <option value="high">Alta</option>
                 <option value="highest">Muy alta</option>
             </select>
-
+    
             <select class="filter" name="filterFrequency" id="filterFrequency">
                 <option value="all" selected>Todos</option>
                 <option value="today">Hoy</option>
@@ -69,40 +50,70 @@
                 <option value="weekly">Semanal</option>
                 <option value="monthly">Mensual</option>
             </select>
-            <a href="#" class="orderBtn" id="orderPriorityBtn">Ordenar por prioridad</a>
-            <a href="#" class="orderBtn" id="orderFrequencyBtn">Ordenar por frecuencia</a>
-            <input type="text" id="search" placeholder="Escribe para buscar">
-            <input type="button" id="searchBtn">
-            <main class="tasks">
-                <section id="endedTasks" class="endedTasks">
+            <a href="#" class="orderBtn" id="orderPriorityBtn"><i class="fas fa-sort-numeric-down-alt"></i><i
+                    class="fas fa-sort-numeric-up"></i></a>
+            <a href="#" class="orderBtn" id="orderFrequencyBtn"><i class="fas fa-sort-amount-up"></i><i
+                    class="fas fa-sort-amount-down-alt"></i></a>
+            <input type="text" id="search" class="search" placeholder="Escribe para buscar">
+            <a href="#" id="searchBtn" class="searchBtn fas fa-search"></a>
+        </section>
+        <main class="tasks">
+            <section id="endedTasks" class="endedTasks">
 
-                </section>
-                <section id="activeTasks" class="activeTasks">
-                    <!-- <article id="1" class="high today">
-                        <h3>Titulo de la tarea 1 - Esta tarea es DUMMY</h3>
-                        <div class="deleteCont"><a href="#" title="delete">&#215;</a></div>
-                    </article> -->
-                </section>
-            </main>
-            <footer>
-                <header>
-                    <h1>Mis <span>Tareas</span></h1>
-                    <p>&copy;</p>
-                </header>
-                <div class="newBtnCont">
-                    <button>+</button>
-                </div>
-                <div class="legal">
-                    <a href="#">Legal</a>
-                </div>
-            </footer>
+            </section>
+            <section id="activeTasks" class="activeTasks">
+                <!-- <article id="1" class="high today">
+                            <h3>Titulo de la tarea 1 - Esta tarea es DUMMY</h3>
+                            <div class="deleteCont"><a href="#" title="delete">&#215;</a></div>
+                        </article> -->
 
+            </section>
+            <!-- <div class="toggleSpace"></div> -->
+            <section class="newTask" id="newTask">
+                <h2>Nueva tarea</h2>
+                <form action="#" method="GET" id="newTaskForm">
+                    <input type="text" id="newTaskTitle" placeholder="Título de Tarea">
 
-        </header>
-        <script src="js/taks.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/events.js"></script>
+                    <select name="newPriority" id="newPriority">
+                        <option value="highest">Muy alta</option>
+                        <option value="high">Alta</option>
+                        <option value="medium" selected>Media</option>
+                        <option value="low">Baja</option>
+                        <option value="lowest">Muy baja</option>
+                    </select>
+
+                    <select name="newFrequency" id="newFrequency">
+                        <option value="today" selected>Hoy</option>
+                        <option value="daily">Diaria</option>
+                        <option value="weekly">Semanal</option>
+                        <option value="monthly">Mensual</option>
+                    </select>
+                    <input type="submit" value="GUARDAR" id="save">
+                </form>
+                <p id="advice" class=advice></p>
+            </section>
+
+        </main>
+
+        <div class="container">
+
+        </div>
+        <footer>
+            <header>
+                <h1>&copy; Mis <span>Tareas</span></h1>
+            </header>
+            <div>
+                <div class="newTaskBtnCont"><a href="#" id="newTaskBtn" class="newTaskBtn">+</a></div>
+            </div>
+            <div class="legal" title="Desgined and developed by Ángel Pasamontes @entropismo">
+                <a href="#">Legal</a>
+            </div>
+        </footer>
     </div>
+
+    <script src="js/taks.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
 </body>
 
 </html>
